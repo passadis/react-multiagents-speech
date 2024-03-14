@@ -13,7 +13,7 @@ This project is about building a React Web App with a Python Backend, hosting 3 
 
 Our workshop showcases an architecture involving:
 
-- A **Python Flask Web App** as the frontend.
+- A **React Web App Container Image** as the frontend.
 - A **Python-based container image** as the backend API endpoint.
 
 The frontend allows users to select a city from a drop-down menu and receive information and photos of that city. The backend service fetches photographs stored in a Storage Account and uses the OpenAI Chat Completions API to retrieve general information about the selected city. This setup can be extended into a full-fledged tourist or travel web application, complete with security, scalability, redundancy, and flexibility.
