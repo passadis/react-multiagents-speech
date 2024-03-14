@@ -4,7 +4,7 @@
   </a>
 </p>
 
-<h1 align="center">Multiagent Web App with Azure Speech and Container Apps</h1>
+<h1 align="center">React and Azure Text to Speech with Container Apps</h1>
 
 ## Introduction
 
