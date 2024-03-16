@@ -15,20 +15,6 @@ function App() {
     setActiveAgent(agent);
   };
 
-  /*const handleCommand = async (command) => {
-    if (activeAgent === 'rita' && command === 'TALK') {
-      try {
-        // Default text to send
-        const defaultText = { text: "Good Morning to everyone" };
-  
-        const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/talk-to-rita`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(defaultText), // Include default text in the request body
-        });
-        const data = await response.json();*/
   const handleCommand = async (command) => {
    if (command === 'TALK') {
             let endpoint = '';
