@@ -1,0 +1,94 @@
+/* Simple styling for the app */
+.App {
+  text-align: center;
+}
+
+.navbar {
+  background-color: #e3f2fd;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.avatar-container {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.avatar {
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+.avatar img {
+  border-radius: 50%;
+  border: 3px solid transparent;
+  width: 100px;
+  height: 100px;
+}
+
+.avatar.active img {
+  border-color: #4CAF50;
+}
+
+.controls {
+  margin: 20px 0;
+}
+
+button {
+  margin: 0 5px;
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #367c39;
+}
+
+/* Add additional styling as needed */
+.logo {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  background-color: #fff;
+  margin: 0 auto 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+}
+
+.stock-input {
+  padding: 8px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  font-size: 16px;
+  border: 2px solid #ddd;
+  border-radius: 4px;
+  width: 200px;
+}
+
+/* Additional styles for the input field when focused */
+.stock-input:focus {
+  outline: none;
+  border-color: #9ecaed;
+  box-shadow: 0 0 10px #9ecaed;
+}
+
+
+.audio-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.download-link {
+  display: block;
+  margin-top: 10px;
+  text-decoration: none;
+  color: blue;
+  font-weight: bold;
+}
