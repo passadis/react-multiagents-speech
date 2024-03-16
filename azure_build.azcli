@@ -1,0 +1,47 @@
+## Run these before anything ! :
+az login
+az extension add --name containerapp --upgrade
+az provider register --namespace Microsoft.App
+az provider register --namespace Microsoft.OperationalInsights
+
+## Load your resources to variables
+$RESOURCE_GROUP="rg-demo24"
+$LOCATION="northeurope"
+$ENVIRONMENT="env-web-x24"
+$FRONTEND="frontend"
+$BACKEND="backend"
+$ACR="acrx2024"
+
+## Create a Resource Group, a Container Registry and a Container Apps Environment:
+az group create --name $RESOURCE_GROUP --location "$LOCATION"
+az acr create --resource-group $RESOURCE_GROUP --name $ACR --sku Basic --admin-enabled true
+az containerapp env create --name $ENVIRONMENT -g $RESOURCE_GROUP --location "$LOCATION"
+
+## Login from your Terminal to ACR:
+az acr login --name $(az acr list -g rg-demo24 --query "[].{name: name}" -o tsv)
+
+## Build your backend:
+az acr build --registry $ACR --image backendtts .
+
+## Create your Backend Container App:
+az containerapp create \
+ --name backendtts \
+ --resource-group $RESOURCE_GROUP \
+ --environment $ENVIRONMENT \
+ --image "$ACR.azurecr.io/backendtts:latest" \
+ --target-port 5000 \
+ --env-vars SPEECH_KEY=xxxxxxxxxx SPEECH_REGION=northeurope \
+ --ingress 'external' \
+ --registry-server "$ACR.azurecr.io" \
+ --query properties.configuration.ingress.fqdn
+
+## Make sure to cd into the React Frontend directory where your Dockerfile is:
+az acr build --registry $ACR --image frontendtts .
+
+## Create your Frontend:
+az containerapp create --name frontendtts --resource-group $RESOURCE_GROUP \
+ --environment $ENVIRONMENT \
+ --image "$ACR.azurecr.io/frontendtts:latest" \
+ --target-port 80 --ingress 'external' \
+ --registry-server "$ACR.azurecr.io" \
+ --query properties.configuration.ingress.fqdn 
