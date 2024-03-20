@@ -94,7 +94,7 @@ def talk_to_mark():
             return jsonify({"error": "Failed to synthesize speech"}), 500
     except Exception as e:
         # Log the detailed error message
-        logging.error(f"Error in /your-route: {traceback.format_exc()}")
+        logging.error(f"Error in /talk-to-mark: {traceback.format_exc()}")
         # Return a generic error message to the user
         return jsonify({"error": "An internal error has occurred!"}), 500
         
@@ -117,8 +117,10 @@ def talk_to_mary():
         else:
             return jsonify({"error": "Failed to synthesize speech"}), 500
     except Exception as e:
-        print(f"Error in /talk-to-mary: {e}")
-        return jsonify({"error": str(e)}), 500
+        # Log the detailed error message
+        logging.error(f"Error in /talk-to-mary: {traceback.format_exc()}")
+        # Return a generic error message to the user
+        return jsonify({"error": "An internal error has occurred!"}), 500
         
 if __name__ == '__main__':
     app.run(debug=False)
