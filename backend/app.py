@@ -9,6 +9,7 @@ from flask_cors import CORS
 
 app = Flask(__name__)
 CORS(app)
+logging.basicConfig(level=logging.ERROR)
 
 # Azure Speech Service configuration using environment variables
 speech_key = os.getenv('SPEECH_KEY')
@@ -70,7 +71,10 @@ def talk_to_rita():
         else:
             return jsonify({"error": "Failed to get weather description"}), 500
     except Exception as e:
-        return jsonify({"error": str(e)}), 500
+        # Log the detailed error message
+        logging.error(f"Error in /your-route: {traceback.format_exc()}")
+        # Return a generic error message to the user
+        return jsonify({"error": "An internal error has occurred!"}), 500
         
 @app.route('/talk-to-mark', methods=['POST'])
 def talk_to_mark():
@@ -89,7 +93,10 @@ def talk_to_mark():
         else:
             return jsonify({"error": "Failed to synthesize speech"}), 500
     except Exception as e:
-        return jsonify({"error": str(e)}), 500
+        # Log the detailed error message
+        logging.error(f"Error in /your-route: {traceback.format_exc()}")
+        # Return a generic error message to the user
+        return jsonify({"error": "An internal error has occurred!"}), 500
         
 @app.route('/talk-to-mary', methods=['POST'])
 def talk_to_mary():
