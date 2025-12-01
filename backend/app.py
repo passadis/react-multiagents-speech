@@ -33,7 +33,7 @@ def text_to_speech(text, voice_name='en-US-JennyNeural'):
 
         # Check result
         if result.reason == speechsdk.ResultReason.SynthesizingAudioCompleted:
-            print("Speech synthesized for text [{}]".format(text))
+            print("Speech synthesized successfully.")
             return result.audio_data  # This is in MP3 format
         elif result.reason == speechsdk.ResultReason.Canceled:
             cancellation_details = result.cancellation_details
